@@ -159,6 +159,44 @@ export const constantRoutes = [
       }
     ]
   },
+ {
+    path: '/management',
+    component: Layout,
+    redirect: '/management/users/index',
+    name: '后台管理',
+    meta: {
+      title: '后台管理',
+      icon: 'management'
+    },
+    children: [
+      {
+        path: 'users',
+        component: () => import('@/views/management/users/index'), // Parent router-view
+        name: '用户管理',
+        meta: { title: '用户管理' },
+         },
+      {
+        path: 'roles',
+        component: () => import('@/views/management/roles/index'),
+        name: 'roles',
+        meta: { title: '角色管理' }
+      },
+
+      {
+        path: 'authority',
+        component: () => import('@/views/management/authority/index'),
+        name: 'authority',
+        meta: { title: '权限管理' }
+      },
+
+      {
+        path: 'logs',
+        component: () => import('@/views/management/logs/index'),
+        name: 'Logs',
+        meta: { title: '查看日志' }
+      }
+    ]
+  },
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
